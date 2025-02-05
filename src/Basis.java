@@ -23,9 +23,9 @@ public class Basis {
         this.kontostand = kontostand;
         this.kontoart = kontoart;
     }
-
     public Basis(){}
 
+    // Getter und Setter
     public String getKontoinhaber() {
         return kontoinhaber;
     }
@@ -82,27 +82,12 @@ public class Basis {
         this.kontoart = kontoart;
     }
 
-    public Scanner getScan() {
-        return scan;
-    }
-
-    public void setScan(Scanner scan) {
-        this.scan = scan;
-    }
-
-    public ArrayList<Basis> getBase() {
-        return base;
-    }
-
-    public void setBase(ArrayList<Basis> base) {
-        this.base = base;
-    }
-
     public void kontoAnlegen(){
         System.out.println("Der erste Punkt ist der Kontoinhaber. Bitte gib deinen vollständigen Namen ein.");
         kontoinhaber = scan.nextLine();
         System.out.println("Bitte gib die Bankleitzahl ein. Diese sollte eine vierstellige Nummer sein.");
         bankleitzahl = scan.nextInt();
+        scan.nextLine();
         System.out.println("Gib die Kontonummer ein.");
         kontonummer = scan.nextLine();
         System.out.println("Wie groß soll der Überziehungsrahmen sein?");
@@ -111,6 +96,7 @@ public class Basis {
         kontogebuer = scan.nextDouble();
         System.out.println("Wie viel möchten Sie bei der Erstellung des Kontos darauf überweisen?");
         kontostand = scan.nextDouble();
+        scan.nextLine();
         System.out.println("Zuletzt noch: Was für eine Art ist ihr Konto? Girokonto, Sparkonto oder Kreditkonto.");
         kontoart = scan.nextLine();
 
@@ -120,13 +106,30 @@ public class Basis {
 
     public void kontoLoeschen(){
         System.out.println("Sie haben sich dazu entschieden, ein Konto zu löschen.");
-
+        // damit es alle Konten anzeigt
+        int zahl = 1;
         for (int i = 0; i < base.size(); i++){
             Basis b = base.get(i);
-            System.out.printf("Kontonummer: %-6s | Kontoinhaber: %-20s%n",b.getKontonummer(), b.getKontoinhaber());
+            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s | Kontoart: %-20s%n",zahl, b.getKontonummer(), b.getKontoinhaber(), b.getKontoart());
+            zahl++;
         }
+
+        // welches Konto soll gelöscht werden
+        System.out.println("Welches Konto soll gelöscht werden? (Bitte Zahl wählen)");
+        int weg = scan.nextInt();
+        base.remove(weg);
     }
 
+    public void einzahlen(){
+        System.out.println("Auf welches Konto soll etwas eingezahlt werden?");
 
+        int zahl = 1;
+        for (int i = 0; i < base.size(); i++){
+            Basis b = base.get(i);
+            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f | Kontoart: %-20s%n",zahl, b.getKontonummer(), b.getKontoinhaber(),b.getKontostand() ,b.getKontoart());
+            zahl++;
+        }
+
+    }
 
 }
