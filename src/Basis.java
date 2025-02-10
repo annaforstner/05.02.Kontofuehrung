@@ -8,20 +8,18 @@ public class Basis {
     private double ueberziehen;
     private double kontogebuer;
     private double kontostand;
-    private String kontoart;
 
     private Scanner scan = new Scanner(System.in);
     private ArrayList<Basis> base = new ArrayList<>();
 
     // Konstruktor
-    public Basis(String kontoinhaber, int bankleitzahl, String kontonummer, double ueberziehen, double kontogebuer, double kontostand, String kontoart) {
+    public Basis(String kontoinhaber, int bankleitzahl, String kontonummer, double ueberziehen, double kontogebuer, double kontostand) {
         this.kontoinhaber = kontoinhaber;
         this.bankleitzahl = bankleitzahl;
         this.kontonummer = kontonummer;
         this.ueberziehen = ueberziehen;
         this.kontogebuer = kontogebuer;
         this.kontostand = kontostand;
-        this.kontoart = kontoart;
     }
     public Basis(){}
 
@@ -74,13 +72,6 @@ public class Basis {
         this.kontostand = kontostand;
     }
 
-    public String getKontoart() {
-        return kontoart;
-    }
-
-    public void setKontoart(String kontoart) {
-        this.kontoart = kontoart;
-    }
 
     public void kontoAnlegen(){
         System.out.println("Der erste Punkt ist der Kontoinhaber. Bitte gib deinen vollständigen Namen ein.");
@@ -90,17 +81,15 @@ public class Basis {
         scan.nextLine();
         System.out.println("Gib die Kontonummer ein.");
         kontonummer = scan.nextLine();
-        System.out.println("Wie groß soll der Überziehungsrahmen sein?");
+        System.out.println("Wie groß ist der Überziehungsrahmen?");
         ueberziehen = scan.nextDouble();
         System.out.println("Wie groß sind die Kontoführungsgebüren?");
         kontogebuer = scan.nextDouble();
         System.out.println("Wie viel möchten Sie bei der Erstellung des Kontos darauf überweisen?");
         kontostand = scan.nextDouble();
         scan.nextLine();
-        System.out.println("Zuletzt noch: Was für eine Art ist ihr Konto? Girokonto, Sparkonto oder Kreditkonto.");
-        kontoart = scan.nextLine();
 
-        Basis b = new Basis(kontoinhaber, bankleitzahl, kontonummer, ueberziehen, kontogebuer, kontostand, kontoart);
+        Basis b = new Basis(kontoinhaber, bankleitzahl, kontonummer, ueberziehen, kontogebuer, kontostand);
         base.add(b);
     }
 
@@ -110,26 +99,13 @@ public class Basis {
         int zahl = 1;
         for (int i = 0; i < base.size(); i++){
             Basis b = base.get(i);
-            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s | Kontoart: %-20s%n",zahl, b.getKontonummer(), b.getKontoinhaber(), b.getKontoart());
+            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s/n",zahl, b.getKontonummer(), b.getKontoinhaber());
             zahl++;
         }
-
         // welches Konto soll gelöscht werden
         System.out.println("Welches Konto soll gelöscht werden? (Bitte Zahl wählen)");
         int weg = scan.nextInt();
         base.remove(weg);
-    }
-
-    public void einzahlen(){
-        System.out.println("Auf welches Konto soll etwas eingezahlt werden?");
-
-        int zahl = 1;
-        for (int i = 0; i < base.size(); i++){
-            Basis b = base.get(i);
-            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f | Kontoart: %-20s%n",zahl, b.getKontonummer(), b.getKontoinhaber(),b.getKontostand() ,b.getKontoart());
-            zahl++;
-        }
-
     }
 
 }
