@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Kreditkonto extends Basis{
 
     private Scanner scan = new Scanner(System.in);
-    private ArrayList<Kreditkonto> kredit = new ArrayList<>();
+    private static ArrayList<Kreditkonto> kredit = new ArrayList<>();
 
     public Kreditkonto(String kontoinhaber, int bankleitzahl, String kontonummer, double ueberziehen, double kontogebuer, double kontostand) {
         super(kontoinhaber, bankleitzahl, kontonummer, ueberziehen, kontogebuer, kontostand);
@@ -25,7 +25,7 @@ public class Kreditkonto extends Basis{
 
         System.out.println("Wählen Sie eine Zahl: ");
         int einz = scan.nextInt();
-        Kreditkonto be = kredit.get(einz);
+        Kreditkonto be = kredit.get(einz-1);
         System.out.printf("Folgendes Konto wurde ausgewählt: Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f/n", be.getKontonummer(), be.getKontoinhaber(), be.getKontostand());
         System.out.println("Wie viel soll eingezahlt werden?\nBitte beachten Sie, dass das Kreditkonto nicht ins positive gehen kann.");
         double rein = scan.nextDouble();
@@ -34,7 +34,7 @@ public class Kreditkonto extends Basis{
         double neuKontostand = geld + rein;
         if (neuKontostand > 0){
             System.out.println("Kreditkonto zurückgezahlt. Konto wird geschlossen.");
-            kredit.remove(einz);
+            kredit.remove(einz-1);
             System.out.println("\nDanke für die Spende.\n");
         }
         else {
@@ -54,7 +54,7 @@ public class Kreditkonto extends Basis{
         }
         System.out.println("Wählen Sie eine Zahl: ");
         int ausz = scan.nextInt();
-        Kreditkonto ba = kredit.get(ausz);
+        Kreditkonto ba = kredit.get(ausz-1);
 
         System.out.printf("Folgendes Konto wurde ausgewählt: Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f/n", ba.getKontonummer(), ba.getKontoinhaber(), ba.getKontostand());
         System.out.println("Wie viel soll ausgezahlt werden?");

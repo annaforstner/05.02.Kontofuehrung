@@ -10,7 +10,7 @@ public class Basis {
     private double kontostand;
 
     private Scanner scan = new Scanner(System.in);
-    private ArrayList<Basis> base = new ArrayList<>();
+    private static ArrayList<Basis> base = new ArrayList<>();
 
     // Konstruktor
     public Basis(String kontoinhaber, int bankleitzahl, String kontonummer, double ueberziehen, double kontogebuer, double kontostand) {
@@ -99,13 +99,14 @@ public class Basis {
         int zahl = 1;
         for (int i = 0; i < base.size(); i++){
             Basis b = base.get(i);
-            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s/n",zahl, b.getKontonummer(), b.getKontoinhaber());
+            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s\n",zahl, b.getKontonummer(), b.getKontoinhaber());
             zahl++;
         }
         // welches Konto soll gelöscht werden
         System.out.println("Welches Konto soll gelöscht werden? (Bitte Zahl wählen)");
         int weg = scan.nextInt();
-        base.remove(weg);
+        scan.nextLine();
+        base.remove(weg - 1);
     }
 
 }

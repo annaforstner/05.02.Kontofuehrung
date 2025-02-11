@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Sparkonto extends Basis{
 
     private Scanner scan = new Scanner(System.in);
-    private ArrayList<Sparkonto> sparen = new ArrayList<>();
+    private static ArrayList<Sparkonto> sparen = new ArrayList<>();
 
     public Sparkonto(String kontoinhaber, int bankleitzahl, String kontonummer, double ueberziehen, double kontogebuer, double kontostand) {
         super(kontoinhaber, bankleitzahl, kontonummer, ueberziehen, kontogebuer, kontostand);
@@ -20,14 +20,14 @@ public class Sparkonto extends Basis{
         int zahl = 1;
         for (int i = 0; i < sparen.size(); i++){
             Sparkonto b = sparen.get(i);
-            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f/n",zahl, b.getKontonummer(), b.getKontoinhaber(),b.getKontostand());
+            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f\n",zahl, b.getKontonummer(), b.getKontoinhaber(),b.getKontostand());
             zahl++;
         }
 
         System.out.println("Wählen Sie eine Zahl: ");
         int einz = scan.nextInt();
-        Sparkonto be = sparen.get(einz);
-        System.out.printf("Folgendes Konto wurde ausgewählt: Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f/n", be.getKontonummer(), be.getKontoinhaber(), be.getKontostand());
+        Sparkonto be = sparen.get(einz -1);
+        System.out.printf("Folgendes Konto wurde ausgewählt: Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f\n", be.getKontonummer(), be.getKontoinhaber(), be.getKontostand());
         System.out.println("Wie viel soll eingezahlt werden?");
         double rein = scan.nextDouble();
         scan.nextLine();
@@ -43,14 +43,14 @@ public class Sparkonto extends Basis{
         int zahl = 1;
         for (int i = 0; i < sparen.size(); i++){
             Sparkonto b = sparen.get(i);
-            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f/n",zahl, b.getKontonummer(), b.getKontoinhaber(),b.getKontostand());
+            System.out.printf("%d | Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f\n",zahl, b.getKontonummer(), b.getKontoinhaber(),b.getKontostand());
             zahl++;
         }
         System.out.println("Wählen Sie eine Zahl: ");
         int ausz = scan.nextInt();
-        Sparkonto ba = sparen.get(ausz);
+        Sparkonto ba = sparen.get(ausz-1);
 
-        System.out.printf("Folgendes Konto wurde ausgewählt: Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f/n", ba.getKontonummer(), ba.getKontoinhaber(), ba.getKontostand());
+        System.out.printf("Folgendes Konto wurde ausgewählt: Kontonummer: %-6s | Kontoinhaber: %-20s | Kontostand: %-6.2f\n", ba.getKontonummer(), ba.getKontoinhaber(), ba.getKontostand());
         System.out.println("Wie viel soll ausgezahlt werden?");
         double raus = scan.nextDouble();
         scan.nextLine();
