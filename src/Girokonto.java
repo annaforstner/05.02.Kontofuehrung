@@ -55,7 +55,7 @@ public class Girokonto extends Basis{
         double geld = ba.getKontostand();
         double neuerKontostand = geld - raus;
         if(neuerKontostand < 0) {
-            System.out.println("Sie haben zu viel Geld abgehoben und sind " + neuerKontostand + " € im Minus.Dies wird mit ihrem Zinssatz von 1,02% per Tag verzinst.");
+            System.out.println("Sie haben zu viel Geld abgehoben und sind " + neuerKontostand + " € im Minus. Dies wird mit ihrem Zinssatz von 1,02% per Tag verzinst.");
             ba.setKontostand(neuerKontostand);
         } else if( neuerKontostand < ba.getUeberziehen()){
             System.out.println("Sie haben den Überziehungsrahmen erreicht. Die Auszahlung ist invalid.");
